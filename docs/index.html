@@ -403,17 +403,25 @@
                   <div class="col-md-8">
                     <dl class="row">
                       <dt class="col-5">lastModified:</dt>
-                      <dd class="col-7">{{ input.lastModified || 'N/A' }}</dd>
+                      <dd class="col-7">
+                        {{ input.length ? input[0].lastModified : 'N/A' }}
+                      </dd>
                       <dt class="col-5">lastModifiedDate:</dt>
                       <dd class="col-7">
-                        {{ input.lastModifiedDate || 'N/A' }}
+                        {{ input.length ? input[0].lastModifiedDate : 'N/A' }}
                       </dd>
                       <dt class="col-5">name:</dt>
-                      <dd class="col-7">{{ input.name || 'N/A' }}</dd>
+                      <dd class="col-7">
+                        {{ input.length ? input[0].name : 'N/A' }}
+                      </dd>
                       <dt class="col-5">type:</dt>
-                      <dd class="col-7">{{ input.type || 'N/A' }}</dd>
+                      <dd class="col-7">
+                        {{ input.length ? input[0].type : 'N/A' }}
+                      </dd>
                       <dt class="col-5">size:</dt>
-                      <dd class="col-7">{{ input.size | prettySize }}</dd>
+                      <dd class="col-7">
+                        {{ input.length && input[0].size | prettySize }}
+                      </dd>
                     </dl>
                   </div>
                 </div>
@@ -459,8 +467,8 @@
                       <dd class="col-7">
                         {{ output.size | prettySize }}
                         <span v-if="output.size"
-                          >({{ ((1 - (output.size / input.size)) *
-                          100).toFixed(2) }}% off)</span
+                          >({{ ((1 - (output.size / input[0].size)) *
+                          100).toFixed(2) }}% reduction)</span
                         >
                       </dd>
                     </dl>

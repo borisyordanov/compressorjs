@@ -153,11 +153,12 @@ window.addEventListener("DOMContentLoaded", function () {
           this.inputURL = URL.createObjectURL(file);
         }
 
-        this.input = file;
+        this.input = [...this.input, file];
         new Compressor(file, this.options);
       },
 
       change: function (e) {
+        this.input = [];
         if (!e.target.files.length) {
           return;
         }
@@ -178,7 +179,7 @@ window.addEventListener("DOMContentLoaded", function () {
       options: {
         deep: true,
         handler: function () {
-          this.compress(this.input);
+          this.input.forEach(this.compress);
         },
       },
     },
